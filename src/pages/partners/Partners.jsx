@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function PartnerShowcasePage() {
   const states = [
@@ -410,30 +410,9 @@ export default function PartnerShowcasePage() {
             ))}
           </div>
         </motion.section>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-            Become a Partner
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            Join our network of distinguished partners and gain access to
-            exclusive investment opportunities
-          </p>
-          <Link
-            to="/become-a-partner"
-            className="inline-block bg-gradient-to-r from-[#003DB4] to-[#0066FF] text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all"
-          >
-            Explore Partnership Benefits
-          </Link>
-        </motion.div>
       </div>
+
+      <Outlet />
     </div>
   );
 }

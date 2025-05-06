@@ -22,7 +22,6 @@ import MinistryBudgetPlanning from './pages/partners/ministries/Budget.jsx';
 import ContactUs from './pages/contact-us/ContactUs.jsx';
 import Attendees from './pages/attendees/Attendees.jsx';
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,8 +32,8 @@ const router = createBrowserRouter([
       { path: 'registration', element: <RegistrationForm /> },
       {
         path: 'partners',
-        element: <PartnerShowcasePage />,
         children: [
+          { index: true, element: <PartnerShowcasePage /> },
           { path: 'lagos', element: <LagosStateInfo /> },
           { path: 'osun', element: <OsunStateInfo /> },
           { path: 'kwara', element: <KwaraStateInfo /> },
