@@ -41,7 +41,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full h-screen mt-24 overflow-hidden">
+    <section className="relative w-full h-screen mt-16 md:mt-24 overflow-hidden">
       {/* Animated Background Images */}
       <AnimatePresence mode="wait">
         <motion.div

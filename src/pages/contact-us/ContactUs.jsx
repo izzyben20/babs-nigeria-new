@@ -126,7 +126,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100 pt-32 pb-20 overflow-hidden mt-30">
+    <div className="relative min-h-screen bg-gray-100 pt-32 pb-20 overflow-hidden mt-20 md:mt-30">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/hero_image_2.png')] bg-cover bg-center opacity-20"></div>

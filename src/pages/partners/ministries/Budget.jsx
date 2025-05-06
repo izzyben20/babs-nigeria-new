@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function MinistryBudgetPlanning() {
   return (
-    <div className="min-h-screen mt-24 bg-gradient-to-b from-indigo-50 to-white">
+    <div className="min-h-screen mt-16 md:mt-24 bg-gradient-to-b from-indigo-50 to-white">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(8)].map((_, i) => (

@@ -77,21 +77,21 @@ export default function PartnerShowcasePage() {
       sector: 'Research & Development',
     },
     {
-      name: 'Prime Kapital',
-      logo: '/images/prime.svg',
-      sector: 'Real Estate Development',
+      name: 'Prime Capital',
+      logo: '/images/prime.png',
+      sector: 'Financial Services',
     },
     {
       name: 'European Commission',
       logo: '/images/european_commission.png',
-      sector: 'Banking & Finance',
+      sector: 'Government Agency',
     },
     {
       name: 'WTC Abuja',
       logo: '/images/wtc_logo.png',
-      sector: 'Financial Services',
+      sector: 'World Trade',
     },
-    { name: 'BCR', logo: '/images/bcr.jpg', sector: '' },
+    { name: 'BCR International', logo: '/images/bcr.jpg', sector: '' },
   ];
 
   const ministries = [
@@ -133,7 +133,7 @@ export default function PartnerShowcasePage() {
   ];
 
   return (
-    <div className="bg-gradient-to-b mt-30 from-[#003DB4]/5 to-white py-16">
+    <div className="bg-gradient-to-b mt-20 md:mt-30 from-[#003DB4]/5 to-white py-16">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (

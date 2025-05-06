@@ -41,7 +41,7 @@ export default function EventHeroSection() {
   };
 
   return (
-    <section className="relative w-full h-screen mt-30 overflow-hidden">
+    <section className="relative w-full h-screen mt-20 md:mt-30 overflow-hidden">
       {/* Animated Background Images */}
       <AnimatePresence mode="wait">
         <motion.div

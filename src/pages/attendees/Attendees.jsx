@@ -37,11 +37,11 @@ const companies = [
   },
   {
     id: 5,
-    name: 'Prime Kapital',
-    industry: 'Real Estate Development',
-    logo: '/images/prime.svg',
+    name: 'Prime Capital',
+    industry: 'Financial Services',
+    logo: '/images/prime.png',
     description:
-      'Pan-European real estate developer focused on mixed-use urban regeneration projects',
+      'Prime Capital AG is a German asset manager focused on alternative investments for institutional investors.',
   },
   {
     id: 6,
@@ -126,7 +126,7 @@ const Attendees = () => {
   ];
 
   return (
-    <div className="relative min-h-screen mt-30 bg-gradient-to-b from-[#003DB4]/5 to-white overflow-hidden">
+    <div className="relative min-h-screen mt-20 md:mt-30 bg-gradient-to-b from-[#003DB4]/5 to-white overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(8)].map((_, i) => (
