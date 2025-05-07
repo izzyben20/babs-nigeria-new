@@ -22,10 +22,43 @@ const RegistrationForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+
+    try {
+      const response = await fetch(
+        'https://babsnigeriatrademission.com/api/send_registration.php',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Registration submitted successfully!');
+        
+        setFormData({
+          firstName: '',
+          office: '',
+          lastName: '',
+          address: '',
+          phoneNumber: '',
+          email: '',
+          companyName: '',
+          website: '',
+          registrationOption: 'Delegate',
+        });
+      } else {
+        alert('Error submitting registration: ' + result.message);
+      }
+    } catch (error) {
+      alert('Error submitting registration: ' + error.message);
+    }
   };
 
   // Animation variants
@@ -225,8 +258,8 @@ const RegistrationForm = () => {
                 Select the option that best describes your participation
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {['Delegate', 'Corporate', 'Government'].map((option) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {['Delegate', 'Corporate'].map((option) => (
                   <motion.div
                     key={option}
                     whileHover={{ scale: 1.02 }}

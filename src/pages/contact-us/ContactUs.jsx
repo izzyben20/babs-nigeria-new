@@ -199,8 +199,8 @@ const ContactUs = () => {
                   <h4 className="text-lg font-semibold text-white mb-2">
                     Email Us
                   </h4>
-                  <p className="text-white/90">
-                    info@babsafricatrademission.com
+                  <p className="text-white/90 break-words">
+                    info@babsnigeriatrademission.com
                   </p>
                 </div>
               </motion.a>
