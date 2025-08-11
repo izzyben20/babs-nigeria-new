@@ -14,6 +14,7 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   @apply bg-white dark:bg-white;
 
   @media (prefers-color-scheme: light) {

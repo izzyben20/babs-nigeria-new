@@ -1,26 +1,20 @@
-import { StrictMode } from 'react';
+import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import './App.css';
 import Layout from './components/Layout.jsx';
-import { HomePage } from './pages/homepage/HomePage.jsx';
-import { Events } from './pages/events/Events.jsx';
-import RegistrationForm from './pages/registration/Registration.jsx';
-import PartnerShowcasePage from './pages/partners/Partners.jsx';
-import LagosStateInfo from './pages/partners/states/Lagos.jsx';
-import OsunStateInfo from './pages/partners/states/Osun.jsx';
-import KwaraStateInfo from './pages/partners/states/Kwara.jsx';
-import PlateauStateInfo from './pages/partners/states/Plateau.jsx';
-import EdoStateInfo from './pages/partners/states/Edo.jsx';
-import EbonyiStateInfo from './pages/partners/states/Ebonyi.jsx';
-import MinistryWomenAffairs from './pages/partners/ministries/Women.jsx';
-import MinistryAgriculture from './pages/partners/ministries/Agriculture.jsx';
-import MinistryLivestock from './pages/partners/ministries/Livestock.jsx';
-import MinistryMarine from './pages/partners/ministries/Marine.jsx';
-import MinistryBudgetPlanning from './pages/partners/ministries/Budget.jsx';
-import ContactUs from './pages/contact-us/ContactUs.jsx';
-import Attendees from './pages/attendees/Attendees.jsx';
+import LoadingSpinner from './components/LoadingSpinner.jsx';
+
+// Lazy-loaded pages
+const HomePage = lazy(() => import('./pages/homepage/HomePage.jsx'));
+const ContactUs = lazy(() => import('./pages/contact-us/ContactUs.jsx'));
+const AboutUs = lazy(() => import('./pages/homepage/about/AboutUs.jsx'));
+const ProductsPage = lazy(() => import('./pages/products/ProductPage.jsx'));
+const TeamPage = lazy(() => import('./pages/team/TeamPage.jsx'));
+const FarmGallery = lazy(() => import('./pages/gallery/FarmGallery.jsx'));
+const PartnersPage = lazy(() => import('./pages/partners/Partners.jsx'));
+const NotFoundPage = lazy(() => import('./pages/not-found/NotFoundPage.jsx'));
 
 const router = createBrowserRouter([
   {
@@ -28,42 +22,21 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'events', element: <Events /> },
-      { path: 'registration', element: <RegistrationForm /> },
-      {
-        path: 'partners',
-        children: [
-          { index: true, element: <PartnerShowcasePage /> },
-          { path: 'lagos', element: <LagosStateInfo /> },
-          { path: 'osun', element: <OsunStateInfo /> },
-          { path: 'kwara', element: <KwaraStateInfo /> },
-          { path: 'plateau', element: <PlateauStateInfo /> },
-          { path: 'edo', element: <EdoStateInfo /> },
-          { path: 'ebonyi', element: <EbonyiStateInfo /> },
-          { path: 'ministry-women-affairs', element: <MinistryWomenAffairs /> },
-          {
-            path: 'ministry-agriculture-food-security',
-            element: <MinistryAgriculture />,
-          },
-          {
-            path: 'ministry-livestock-development',
-            element: <MinistryLivestock />,
-          },
-          { path: 'ministry-marine-blue-economy', element: <MinistryMarine /> },
-          {
-            path: 'ministry-budget-national-planning',
-            element: <MinistryBudgetPlanning />,
-          },
-        ],
-      },
-      { path: 'contact-us', element: <ContactUs /> },
-      { path: 'attendees', element: <Attendees /> },
+      { path: 'partners', element: <PartnersPage /> },
+      { path: 'about', element: <AboutUs /> },
+      { path: 'products', element: <ProductsPage /> },
+      { path: 'gallery', element: <FarmGallery /> },
+      { path: 'team', element: <TeamPage /> },
+      { path: 'contact', element: <ContactUs /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback={<LoadingSpinner />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </StrictMode>
 );

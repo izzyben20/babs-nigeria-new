@@ -1,139 +1,185 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, LinkedIn, Twitter } from './svg/SocialIcons';
+import { motion } from 'framer-motion';
+import {
+  MapPin,
+  Clock,
+  Phone,
+  Mail,
+  Sprout,
+  Truck,
+  ShieldCheck,
+  Leaf,
+} from 'lucide-react';
+import LogoWhite from './LogoWhite';
 
-const Footer = () => {
-  const links = [
-    { label: 'Home', link: '/' },
-    { label: 'Event', link: '/events' },
-    { label: 'Partners', link: '/partners' },
-    { label: 'Attendees', link: '/attendees' },
-    { label: 'Contact us', link: '/contact-us' },
-  ];
-
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Link to="/" className="text-xl text-center font-bold text-primary">
-            <img
-              src="/images/babs_logo_white.png"
-              alt="Logo"
-              className="h-30"
-            />
-          </Link>
+    <footer className="relative bg-emerald-800 text-white overflow-hidden">
+      {/* Background agricultural elements */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute -left-20 -top-20 w-64 h-64 bg-emerald-600 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/images/contact.jpg')] bg-cover bg-center mix-blend-overlay opacity-10"></div>
+      </div>
 
-          <div>
-            <h3 className="text-lg lg:text-center font-semibold mb-4">Quick Links</h3>
+      {/* Footer content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Company info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <div className="flex items-center">
+              <div className="bg-emerald-600 text-white p-2 rounded-lg">
+                {/* <Sprout className="w-8 h-8" /> */}
+                <LogoWhite width={30} height={40} />
+              </div>
+              <span className="ml-3 text-2xl font-bold text-white">
+                EE Agro <span className="text-amber-300">Farms</span>
+              </span>
+            </div>
+            <p className="text-emerald-100">
+              Cultivating excellence in agriculture through sustainable
+              practices and innovative solutions.
+            </p>
+            <div className="flex space-x-4 pt-2">
+              {[
+                {
+                  name: 'Organic',
+                  icon: <Leaf className="w-5 h-5 text-amber-300" />,
+                },
+                {
+                  name: 'Delivery',
+                  icon: <Truck className="w-5 h-5 text-amber-300" />,
+                },
+                {
+                  name: 'Quality',
+                  icon: <ShieldCheck className="w-5 h-5 text-amber-300" />,
+                },
+              ].map((item) => (
+                <div
+                  key={item.name}
+                  className="flex items-center space-x-1 bg-emerald-700/50 px-3 py-1 rounded-full"
+                >
+                  {item.icon}
+                  <span className="text-xs font-medium">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <h3 className="text-lg font-semibold text-amber-300 border-b border-emerald-700 pb-2">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
-              {links.map((option, index) => (
-                <li key={index} className='text-left lg:text-center'>
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'About Us', href: '/about' },
+                { label: 'Our Products', href: '/products' },
+                { label: 'Farm Gallery', href: '/gallery' },
+                { label: 'Contact Us', href: '/contact' },
+              ].map((item) => (
+                <li key={item.href}>
                   <Link
-                    to={option.link}
-                    className="hover:text-blue-300 font-poppins font-light transition-colors"
+                    to={item.href}
+                    className="flex items-center text-emerald-100 hover:text-amber-300 transition-colors"
                   >
-                    {option.label}
+                    <span className="w-2 h-2 bg-amber-300 rounded-full mr-2"></span>
+                    {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Contact Information */}
-          <div className="">
-            <h3 className="text-lg lg:text-right font-semibold mb-4">
-              Stay updated with latest info
-            </h3>
-            <div className="flex lg:justify-end space-x-1.5 items-center">
-              <Facebook />
-              <LinkedIn />
-              <Instagram />
-              <Twitter />
-            </div>
-            <address className="not-italic space-y-2 mt-2">
-              <p className="font-poppins font-light lg:text-right text-sm">
-                Rue Marcel Marien 13, Schaerbeek, Belgium
-              </p>
-              <p className="font-poppins font-light lg:text-right text-sm">
-                Federal Secretariat Phase 1, Room 5A 4.58, 4th Floor, Annex
-                Block, Abuja-Nigeria.
-              </p>
-              <div className="pt-2">
-                <p className="font-poppins font-light lg:text-right text-sm">
-                  <a
-                    href="tel:+32465654218"
-                    className="hover:text-blue-300 text-sm text-right transition-colors"
-                  >
-                    +32465654218
-                  </a>
-                </p>
-                <p className="font-poppins font-light lg:text-right text-sm">
-                  <a
-                    href="tel:+32465333569"
-                    className="hover:text-blue-300 text-sm text-right transition-colors"
-                  >
-                    +32465333569
-                  </a>
-                </p>
-                <p className="font-poppins font-light lg:text-right text-sm">
-                  <a
-                    href="tel:+2347070680721"
-                    className="hover:text-blue-300 text-sm text-right transition-colors"
-                  >
-                    +2347070680721
-                  </a>
-                </p>
-              </div>
-            </address>
-          </div>
-
-          {/* Mission Statement */}
-        </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400"></div>
-
-        <div className="md:col-span-1 lg:col-span-1">
-          <p className="mb-4 font-poppins font-light">
-            This high-level mission—organized under the theme{' '}
-            <span className="italic">
-              "Bridging Continents: Strengthening Trade, Investment, and
-              Knowledge Transfer for Economic Growth"
-            </span>
-            —aims to foster strategic commercial, governmental, and
-            developmental partnerships between the European Union and the
-            Federal Republic of Nigeria.
-          </p>
-          <Link
-            to="/events"
-            className="inline-flex items-center text-blue-300 hover:text-blue-100 transition-colors font-medium"
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-4"
           >
-            Read more
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Link>
+            <h3 className="text-lg font-semibold text-amber-300 border-b border-emerald-700 pb-2">
+              Contact Us
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-amber-300 mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-emerald-100 font-medium">Head Office:</p>
+                  <p className="text-emerald-100">
+                    186A, Igbosere Rd, Obalende,
+                    <br />
+                    Lagos, Nigeria
+                  </p>
+                  <p className="text-emerald-100 font-medium mt-2">
+                    Farm Location:
+                  </p>
+                  <p className="text-emerald-100">
+                    Gwaria Wizi Village,
+                    <br />
+                    Kaiama LGA,
+                    <br />
+                    Kwara State, Nigeria
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-amber-300" />
+                <div>
+                  <a
+                    href="tel:+2348133035963"
+                    className="text-emerald-100 hover:text-amber-300 transition-colors"
+                  >
+                    +234 813 303 5963
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+2349163563562"
+                    className="text-emerald-100 hover:text-amber-300 transition-colors"
+                  >
+                    0916 356 3562
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-amber-300" />
+                <a
+                  href="mailto:info@ee-agro.com"
+                  className="text-emerald-100 hover:text-amber-300 transition-colors"
+                >
+                  info@ee-agro.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Clock className="w-5 h-5 text-amber-300" />
+                <p className="text-emerald-100">Mon - Fri: 8:00 AM - 5:00 PM</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Copyright / Bottom Bar */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="font-poppins">
-              © {new Date().getFullYear()} BABS-Nigeria T R A D E M I S S I O N.
-              All rights reserved.
-            </p>
-          </div>
+        {/* Bottom bar */}
+        <div className="border-t border-emerald-700 mt-12 pt-6 flex flex-col md:flex-row justify-center items-center">
+          <p className="text-emerald-200 text-sm">
+            &copy; {new Date().getFullYear()} EE Agro Farms LTD. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
